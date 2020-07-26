@@ -1,0 +1,30 @@
+1 install Erlanq (https://www.erlang.org/downloads)
+2 install rabimq(https://www.rabbitmq.com/install-windows.html)
+3) open  rabbitmq command promt  then  enter this cmd to access default  port of http://localhost:15672/#/
+cmd= rabbitmq-plugins enable rabbitmq_management
+4)  in visual studio add NuGet package of rabitmqclinet
+
+
+
+5)   var factory = new ConnectionFactory()
+            {
+                HostName = "localhost"
+            };
+            using (var connect = factory.CreateConnection())
+            using (var channel = connect.CreateModel())
+            {
+                channel.QueueDeclare("BasicTest", false, false, false, null);
+                string msg = "Babu new  with Rabbitmq getting start";
+                var body = Encoding.UTF8.GetBytes(msg);
+                channel.BasicPublish("", "BasicTest", null, body);
+                Console.WriteLine($"Sent Message {msg}");
+            }
+            Console.WriteLine("enter any Key  to exit ...");
+            Console.ReadLine();
+
+
+create connection factory and connect .   con,chan,qu,msg,pub(ccqmp)
+create channel 
+create queue 
+create message
+publish message
